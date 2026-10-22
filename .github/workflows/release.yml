@@ -1,0 +1,57 @@
+name: Build PDFs and Release
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install devbox
+        uses: jetify-com/devbox-install-action@v0.14.0
+        with:
+          enable-cache: true
+
+      - name: Compile PDFs
+        run: devbox run compile
+
+      - name: Collect PDFs
+        id: collect
+        run: |
+          DATETIME=$(date +'%Y-%m-%d_%H-%M')
+          echo "datetime=${DATETIME}" >> $GITHUB_OUTPUT
+          mkdir -p out/latest out/dated
+          for pair in \
+            "ms2-report/index.pdf:eid_privacy-101.292-IP-ICT-ms2-report" \
+            "ms4-report/index.pdf:eid_privacy-101.292-IP-ICT-ms4-report" \
+            "taxonomy-eid/main.pdf:taxonomy-eid-paper"; do
+            src=${pair%%:*}; name=${pair##*:}
+            cp "$src" "out/latest/${name}.pdf"
+            cp "$src" "out/dated/${name}-${DATETIME}.pdf"
+          done
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.collect.outputs.datetime }}
+          name: ${{ steps.collect.outputs.datetime }}
+          files: out/dated/*.pdf
+          generate_release_notes: true
+
+      - name: Update Latest Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest
+          name: Latest Reports
+          files: out/latest/*.pdf
+          generate_release_notes: false
+          make_latest: true

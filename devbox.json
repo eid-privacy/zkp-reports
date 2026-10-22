@@ -1,0 +1,33 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.16.0/.schema/devbox.schema.json",
+  "packages": {
+    "typst": "latest",
+    "tinymist": "latest",
+    "texliveTeTeX": "latest",
+    "texlivePackages.lipsum": {
+      "version": "latest",
+      "outputs": ["tex"]
+    },
+    "texlivePackages.todonotes": {
+      "version": "latest",
+      "outputs": ["tex"]
+    }
+  },
+  "shell": {
+    "scripts": {
+      "ms2": ["cd ms2-report; typst compile index.typ"],
+      "ms4": ["cd ms4-report; typst compile index.typ"],
+      "taxonomy": [
+        "cd taxonomy-eid",
+        "latex main.tex",
+        "bibtex main",
+        "latex main.tex",
+        "pdflatex main.tex"
+      ],
+      "compile": ["devbox run ms2", "devbox run ms4", "devbox run taxonomy"]
+    }
+  },
+  "env": {
+    "TEXINPUTS": ".:$PWD/.devbox/nix/profile/default/tex/latex/lipsum:$PWD/.devbox/nix/profile/default/tex/latex/todonotes:$TEXINPUTS"
+  }
+}

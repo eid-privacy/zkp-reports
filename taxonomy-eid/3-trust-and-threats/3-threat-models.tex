@@ -1,0 +1,298 @@
+\subsection{Threat Models}
+\label{subsub:threat_models}
+
+To complete the \emph{\rot} branch, we list the broad characteristics that \emph{Threat Models} should consider when modeling the security of electronic identities.
+The \emph{External Threats} branch groups threats by entities that are not actors participating in the system in any role or legal status and as such do not have access to private keys to make them legitimate actors.
+\emph{Internal Threats} emanate from misbehavior -- intentional or not -- from legitimate actors in any role or legal status. This category models both technical and legal power imbalance.
+Finally \emph{Systemic Failures} lists threats to the whole construction, impacting all actors. In particular, we list threats that compromise the cryptographic guarantees of the system: mathematical assumptions, implementation errors, hardware security, as well as the supply chain of all these --- from scientific papers to silicon chips and implementations.
+
+\vspace{1em}
+
+\dirtree{%
+.1 Threat Models. 
+.2 External Threats. 
+.3 Nation State. 
+.3 Hacking Group. 
+.3 Theft / Device Loss. 
+.2 Internal Threats. 
+.3 Functional Role Abuse. 
+.3 Legal Role Abuse. 
+.3 Collusion between Actors. 
+.2 Systemic Failures. 
+.3 Quantum Computers. 
+.3 Cryptographic Soundness. 
+.3 Implementation Failure. 
+.3 Supply Chain Attacks. 
+}
+
+%\todo{LG: Need to go through Fabrice's master thesis and look what is still missing here...}
+
+\subsubsection{External Threats}
+
+In this paragraph, we consider threats from actors who start with public access
+to the system.
+This means that if they gain access to any of the secrets in the system, they will
+not behave rationally in the sense of the usual owners of these secrets:
+While a \emph{holder} will not want to share their secrets with a \emph{verifier},
+once an external adversary gets hold of these secrets, they will use it even if it adds
+damage to the holder.
+
+\paragraph{Nation States}
+\label{subp:nation_state}
+
+have the biggest resources available from all threat actors.
+From the technical resources, some of these actors can be considered to have a \emph{global network view}
+\cite{TorAttack}, which can break anonymity guarantees based on partial network view only.
+Another technical resource is the \emph{store now, decrypt later} approach, which allows such an adversary
+to store large amounts of traffic data, in the hope to decrypt it once large generic quantum computers
+are available.
+
+A nation state also has soft power, which can be used to \emph{coerce} a company into giving
+access to its data or operating system \cite{TelegramArrest}\cite{ProtonLogging}.
+While \emph{data access} is the most common request done by governments, there have been attempts
+to ask a company to modify its operating system to access a device (cite San Bernardino case
+\cite{AppleSanBernardino}.
+We suppose that such a change could not stay hidden for a very long time, and will have major
+repercussions into the trust assumptions given to the companies involved.
+
+A last element is the \emph{modification of law}, to allow retrieval of data which has been
+kept hidden from the government beforehand.
+In the best case, the changes of law only change the future handling of data (cite
+''Vorratsdatenspeicherung''), but sometimes a government will also try to access
+data which had guarantees of privacy in the past.
+
+The fact that a nation state can itself be an issuer is dealt with in section \ref{p:internal-threats}.
+
+\paragraph{Hacking Groups} are technically and financially capable groups using stolen data as a mean to a financial end.
+We model them as having less power and capabilities than nation states --- although some might be backed by one.
+
+These groups can use hard power, raw technical capabilities, to attack victims. 
+An example is the \emph{denial of service}, in which attackers
+overwhelm the capability of the victim's system to handle requests, rendering it unresponsive.
+
+The use of soft power includes \emph{phishing} as the most common attack vector according to \cite{IC3-24}.
+Phishing attacks are a form of \emph{social engineering}, in which attackers take advantage of human psychology to get victims to act on their behalf.
+Through the use of emails, SMS, voice calls, or other channels, the attackers get victims to execute malicious programs, to send credentials to the attackers, or to commit other actions that will help attackers compromise the victim's system.
+It can be targeted towards a specific individual, or rely on targeting a large amount of legitimate users in the hope that at least one (or some) will inadvertently help the attacker.
+
+According to the same report, the most common action by an attacker is \emph{extortion through ransomware}.
+Hacker groups \emph{steal data} and request money in exchange for the promise not to divulge the data,
+or encrypt the data and give the key in exchange for money.
+Victims have to pay without guarantees that they will receive the key or that greater divulgation will not happen anyway.
+Sometimes both methods are combined, and the victim is extorted more than once, which is called \emph{double extortion}
+and even has a game-theoretical equilibrium \cite{Meurs24}.
+
+\paragraph{Theft / Device Loss / Coercion} are cases where the device of a legitimate user of the system falls into malicious hands, it must be secured enough to avoid misuse or abuse the victim's identity.
+
+This can also happen through \emph{coercion} of the holder by a third party to use their
+credential for a purpose that is unlawful or otherwise harmful to the legitimate user.
+
+\subsubsection{Internal Threats}
+\label{p:internal-threats}
+
+What can happen if one or more of the official \emph{actors} in the \eid system
+misbehave and do not follow the protocol or the legal framework?
+
+\paragraph{Functional Role Abuse} allow for various kind of attacks: 
+
+In an \eid system, a \textbf{verifier} can \emph{request too many attributes} 
+from the holder, over-identifying them, possibly de-anonymizing them. 
+Any overreach produces data records that, in some cases, should not be in the verifier’s possession, may be subject to unwanted disclosure through attacks or mishandling.
+Without an \eid system in place, the users will send a copy of their national identity card, which is a lucrative target for any criminal finding it \cite{Tea25}.
+
+Verifiers misbehaving by \emph{keeping data} for longer than allowed or agreed-upon expose themselves and holders to the same risks of data exposure. 
+In addition, it exposes the holder to future abuse by the verifier.
+The Swiss e-ID act defines which type of data can be retained by the different actors in the system.
+
+An \textbf{issuer} has extended power in an \eid system and has to be trusted 
+to fulfill their role in a reliable and trustworthy way.
+% For later: Issuers' responsibilities start with the modelization of the credentials they will issue, these should contain only necessary information, avoid unique correlators, have a well-bounded time-to-live. \todo{CH: This begs for an "etc." Maybe we should remove it entirely ?} 
+During emission of the credentials, an issuer centralizes a lot of \emph{toxic information}, which must be securely deleted: the link between the signatures and the holders,
+the IP address of the holders for requests during a presentation of the certificate, and any information the holder had to present in exchange for the credential.
+
+The issuer must also be trusted to
+not \emph{re-issue} a credential to a third party and to ensure they are delivering credentials to the legitimate holder of the information.
+
+\subparagraph{Holders} have little incentive to break the system, as it is hard for them to do so without raising suspicion and consequences outweigh benefits
+more clearly than for legal role abuses.
+The likely most frequent misbehavior is \emph{credential sharing}, where a holder lends their credential to another holder.
+
+\paragraph{Legal Role Abuse} must be watched carefully, as described in paragraph \ref{subp:nation_state}.
+Multiple \eid systems in the northern countries rely on the law to protect participants'
+data, which is stored with private actors \cite{BankID25}.
+These protections are vulnerable to slow regulatory drift, significant \emph{changes of law}, or legal battles and delays.
+All these events can drastically alter the rights of governments and/or private companies over the exchanged data.
+Individuals can have a hard time following and combating these changes.
+%In Switzerland there is a discussion about \emph{extension of the surveillance infrastructure}\cite{DigiGesMassen24}, which will
+%significantly weaken the current protection of individuals. \todo{This feels like the beginning of a tangent. Should we cut that ? I think this, and some other of our tangents would make wonderful material for the blog. Although it might be too political for both our organizations}
+
+%Citing Carmela Troncoso from \cite{Troncoso20}
+%\begin{quote}
+%When you have a secret and you tell it to someone, you trust this person to not reveal it. Privacy by design means that you don’t tell the secret. So you don’t need to trust this person not to reveal it.    \todo{Looking at this individually we might want to give this quote some prime space at the beginning of the next paper's versions. It is quite a good introduction to what we want to do.}
+%\end{quote}
+
+A more subtle attack is the \emph{legal loophole} abuse, where certain aspects of the systems
+are not defined, be it on purpose, or through negligence.
+This can allow governments, or private companies, to collect and abuse
+more data than a privacy preserving system should allow.
+
+\paragraph{Collusion between Actors} describes threat models where actors are not misbehaving in isolation but collaborating together.
+
+If \textbf{multiple verifiers} collude and exchange data about their visitors,
+it becomes easier to uniquely identify and correlate their users.
+To do this, the verifiers need to \emph{link} the various presentations of the users,
+and then consolidate the information each verifier has about the user.
+This linkage can happen by \emph{comparing metadata} like IP addresses, access
+time, access patterns, or other data given by the user.
+For \eid, this can also mean using parts of the certificate to link various presentations:
+ the electronic signature, the time of emission, end of validity, revocation number,
+or any other data being in common between different presentations of the certificates.
+This is happening at large scale when visiting websites, and it's the ad-industry who
+does the aggregation of these information to create a user profile \cite{BARW16}.
+
+In the case of collusion between \textbf{one or more verifiers and the issuer},
+the available attack surface increases.
+As the issuer has knowledge of all the information of the holders, being able to
+link any information between the issuer and the verifiers directly gives full
+information to all parties.
+This could happen if the issuer doesn't follow protocol and stores
+\emph{electronic signatures along with the corresponding user identities}.
+Together with the information gathered by the verifiers, this gives a more precise
+image of what, when, and where the user was using their credentials.
+
+Currently, we cannot think of specific threats for \textbf{verifier and holder collusion},
+or \textbf{collusion between holders}.
+
+\subsubsection{Systemic Failures}
+
+We talk about systemic failures when technical assumptions made when setting up the systems turn out to be false or invalidated (even temporarily).
+Some of these assumptions, such as the existence of "powerful enough" quantum computers, have a shrinking shelf life, and systems must be designed accordingly.
+Other assumptions rely on the quality of the system's implementation, as well as
+the research behind the algorithms used.
+
+Erica Klarreich asks a fundamental question in \emph{which computational universe do we live in?}\cite{KlarUniverse22}
+The idea behind this question is the fact that until now, we do not have any mathematical proof of the absolute difficulty
+of breaking any of the available cryptographic schemes.
+All we can do is compare them to one another in relative terms, and prove statements like: 
+''Supposing that factorization of big numbers is hard, RSA is secure''.
+And, in effect, factorization of big numbers is hard, unless there is a big enough generic quantum computer.
+So the above holds up until the point somebody figures out a an efficient way to factorize large numbers or until the apparition of powerful enough \emph{quantum computers}.
+Or if somebody finds a better algorithm to factorize large numbers. 
+
+\paragraph{Quantum Computers} are a threat which is not yet materialized.
+Before talking about the effect of quantum computers on cryptographic assumptions, let's make a small detour to understand how we model an important piece of asymmetric cryptography: \emph{one-way functions}, as described in
+\ref{sp:public-key-cryptography}.
+A one-way function $f$ is an operation that maps elements from a set $\mathcal{A}$ to elements in a set $\mathcal{B}$ efficiently. The most commonly used cryptographic algorithms assume there is no (computationally) easy way, given an element $b \in \mathcal{B}$, to compute the corresponding element $a \in \mathcal{A}$ such that $f(a) = b$.
+It has been shown theoretically that a large-scale, high-quality, universal
+quantum computer \cite[s. 2.1]{TaurusQuantum23} can do this inversion in polynomial time for two of the most used one-way functions: 
+\emph{integer factorization}, which is the one-way function of RSA, 
+and \emph{discreet logarithm}, which is the one-way function in Elliptic Curve cryptography.
+Publicly known quantum computers in 2025 are only \emph{universal}, but lack
+the scale and the quality to perform any useful calculation.
+
+Finding the private key, given the public key, has different implications for
+the available cryptographic services \ref{pa:cryptographic-services}.
+Encryption \ref{sp:encrypting} is the most affected by such capabilities, as the discovery
+of the private key allows an attacker to decrypt the message.
+This threat is called \emph{store now decrypt later}.
+In \eid systems, however, vulnerable one-way functions are only used for
+signatures \ref{sp:signing}.
+So once a quantum computer capable of breaking the used cryptographic algorithms is
+available, all signatures, past and future, must be considered invalid.
+
+\paragraph{Cryptographic Soundness} can be summarized by:
+\emph{don't roll your own crypto} \cite{SchneierLaw11}.
+This is the wisdom gained by many cryptographic protocols which have not been
+studied and scrutinized before being used in real products \cite{Vaudenay02}.
+In general, it is very difficult to create secure cryptographic protocols, and even
+the most commonly used like RSA and Elliptic Curves are deemed secure more by the
+absence of attacks, than by any mathematical proofs that they are secure.
+
+Most of the cryptographic algorithms used in \eid systems like \swiyu rely on the
+following assumptions:
+\begin{itemize}
+    \item Elliptic Curves are a \emph{secure one-way function}
+    \item SHA256 is a good representation of the \emph{random oracle model}
+\end{itemize}
+If these assumptions turn out to be flawed, most of the foundations of \eid and other systems
+are broken.
+
+Another aspect of cryptographic soundness is the correctness of proofs for any of the cryptographic
+algorithms used in the system.
+New algorithms like Longfellow \cite{FS24} and Microsoft's Crescent \cite{FFL25} use complex constructions to optimize the creation of their
+Zero-Knowledge Proofs.
+It is yet to be shown that these constructions are actually secure, and don't 
+\emph{leak information}, or allow the prover to create a \emph{wrong proof}.
+Oftentimes, these systems are so complicated that more than one completely different team must audit the system to give some assurance that the construction holds.
+Theoretically it should be possible to give a \emph{formal proof} of the constructions,
+but so far we don't know of any formal proof of a construction with these
+complexities.
+
+There have also been reports of \emph{backdoored algorithms} \cite{DualEC},
+where a nation state proposed an algorithm which has been weakened on purpose.
+Most modern algorithms now avoid \emph{hand-optimized values}, and use
+randomly chosen values, or other \emph{nothing-up-my-sleeve numbers}\cite{Salsa20}.
+
+A final point, which is close to \emph{implementation failures}, is the addition
+of \emph{simple} solutions to complex problems.
+Such \emph{patches} to existing software often only appear to solve the problem,
+when in fact it only hides it badly and doesn't resist to an attack by a serious
+attacker.
+Unless a solution has been peer-reviewed by established cryptographers, it should
+be considered to fall under the ''Don't roll your own crypto'' \cite{SchneierLaw11} caveat.
+
+\paragraph{Implementation Failures} concern the software developers putting a new
+algorithm into code.
+One of the most common implementation failure leading to security issues is missing
+\emph{memory safety}.
+If an attacker can get read access to unauthorized memory, or, worse, can overwrite
+memory with a \emph{buffer overflow}, they can get access to usually protected
+information.
+For high-level languages like Java, C\#, or Dot-Net, buffer overflow in the language
+is mostly impossible.
+However, often they use libraries which are written in low-level languages like
+C or C++, where buffer overflows can readily happen.
+Other low-level computer languages like \emph{go} or \emph{rust} make these attacks very unlikely
+to happen, but these languages are still very rarely used in these cases \cite{HeartbleedXKCD}.
+
+Another common failure is \emph{missing tests} for \emph{edge cases} in the code.
+If an attacker can find a critical edge case, it can be used to enter the system.
+To avoid this, \emph{external code reviews} are needed, as well as \emph{bug bounty programs},
+which allow knowledgeable users to test the system for errors before and after
+deployment.
+
+Deployment itself is another critical moment in software development:
+\emph{Missing separation} of the debugging, testing, and production code can lead, for
+example, to accepting test certificates in production code.
+Especially on github, there are many cases where public repositories contain
+access tokens, which allow the hackers to enter the system - even from
+github itself \cite{GithubPrivate23}.
+
+Less common errors (and harder to exploit too) are \emph{side channel attacks}, which allow the attacker to gain
+information about the system by observing it carefully.
+The early attacks of this kind used \emph{timing side channels}, later leakages also
+involved \emph{electromagnetic side channels}, or \emph{power drawing side channels}.
+Depending on the value of the target, these more obscure side channel leakages might 
+be enough to break a system.
+For the timing side channels, there have been attacks which were even able to be done
+over the internet \cite{BB03}.
+
+\subsubsection{Supply Chain Attacks}
+
+A very specific implementation failure is the use of unverified or badly tested
+software libraries.
+Current software projects include hundreds, if not thousands of software libraries.
+Most of them are not directly required by the project, but are indirectly included
+in the project in one way or another.
+Most of today's software languages treat all these libraries equally, so if one of
+these libraries has been corrupted by an attacker, and is included in the system,
+the whole system can be exposed to this attacker.
+
+However, libraries need to be updated, not only for the sake of getting new capabilities,
+but also because updates often fix errors in these libraries.
+Keeping track of all the used libraries is a very hard task, and oftentimes it is not
+known which library in which version is used in which project \cite{Log4Shell21}.
+
+There is also a potential attack vector with hardware supply chain attack:
+A nation state could for example backdoor a hardware security module (HSM), 
+and exfiltrate the private key through different means \cite{SchneierBackdoor25}.

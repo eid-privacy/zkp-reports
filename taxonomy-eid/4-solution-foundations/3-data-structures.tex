@@ -1,0 +1,36 @@
+\subsection{Data Structures}
+
+The following data structures are used in the EUDI and \swiyu projects.
+
+\begin{itemize}
+    \item Verifiable Credentials (VC) is a generic term used to define a data structure containing attributes from the holder. 
+    They are signed by an issuer so that verifiers can check the validity of the credential.
+    \item mDoc/mDL is a type of VC defined by the ISO standard \cite{ISO18013-5_2021}.
+    The VC includes only salted hashes of the attributes, which allows for selective disclosure.
+    It is used as the VCs in the EUDI and rolled out as the driving license in some US states.
+    \item SD-JWT is an open standard VC hosted by the IETF \cite{SDJWT}.
+    The VC includes only salted hashes of the attributes, which allows for selective disclosure.
+    It is used as VC in EUDI and \swiyu.
+\end{itemize}
+
+% \dirtree{%
+% .1 Data Structures. 
+% .2 Credential Formats. 
+% .3 IETF SD-JWT. 
+% .3 ISO mDoc. 
+% .3 W3C Verifiable Credentials. 
+% .3 AnonCreds. 
+% .3 AnonCreds v2. 
+% .2 Trust Lists. 
+% .3 EBSI Trust List. 
+% .3 ETSI Trusted Lists. 
+% .3 Swiyu Trust Protocol. 
+% .2 Certificates. 
+% .3 X.509. 
+% .2 Pseudonymity Schemes.
+% .3 W3C DIDs. 
+% .2 Revocation Lists. 
+% .3 W3C Status Lists. 
+% .3 IETF Status Lists. 
+% .3 Anoncred's accumulators. 
+% }

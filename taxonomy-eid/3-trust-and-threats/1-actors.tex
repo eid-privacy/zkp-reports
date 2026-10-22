@@ -1,0 +1,65 @@
+\subsection{Actors}
+\label{subsub:actors}
+
+In \emph{\rot}, \emph{Actors} describe the parties interacting through the identity system from two different angles: their \emph{legal status} and their \emph{role} in an interaction.
+Depending on the type of an actor and their functional role, the privacy requirements and threat models differ.
+The legal entities are based on the definition in most of the legal systems: private individuals, businesses, and governments.
+We elected to use the functional roles that are commonly used in the current EU and CH proposals: Verifier, holder, and issuer.
+Note that roles are tied to interactions, not entities. 
+A single entity can assume different roles between transactions, e.g., verifying a credential in order to issue a new one.
+
+%\todo{LG: is it OK if this is very Swiss-related? I suppose that most of it is the same in the EU and elsewhere... }
+%\todo{Okay I thought this was related to the previous paragraph. It is true the definitions are very Swiss oriented. I changed some to make them broader. I think we should eventually evolve that so the definitions can be applied elsewhere}
+
+\vspace{1em}
+
+\dirtree{%
+.1 Actors. 
+.2 Legal Entities. 
+.3 Private Individuals. 
+.3 Business. 
+.3 Government. 
+.2 Functional Roles. 
+.3 Issuer. 
+.3 Holder. 
+.3 Verifier. 
+}
+
+\subsubsection{Legal Entities} 
+
+Here we define the responsibilities and rights of the different actors in the system.
+For Switzerland, these are defined in the \eid Act \cite{BGEID24} and the accompanying ordinance \cite{VEID25}.
+Other acts related to digital security will also apply.
+
+\paragraph{Private Individuals} are the most common entities using \eid to prove one or more attributes related to their identity.
+The Swiss proposal currently only defines a digital identity for individuals.
+This makes them \emph{holders} by default. We can envision individuals acting in other \emph{functional roles} even though the technical means to do so may not be available.
+
+\paragraph{Businesses} must have a Unique Enterprise Identification Number (UID) to appear as such and be represented officially in the Swiss e-ID system.
+In the scope of the Swiss proposal, they are \emph{verifiers}.
+It is a natural extension, however, to assume they will eventually act as \emph{holders} and \emph{issuers} too.
+
+\paragraph{Government} is responsible for the system and runs the necessary infrastructure for it, with the exception of the online identity verification using video.
+They also run the \emph{registry portal}, which allows anybody to sign up and create entries in the \emph{base registry} for their public keys, as well as entries in the \emph{trust registry}.
+The entries in the \emph{trust registry} are verified by the government, and include the full name, address, and reasons to be a verifier or an issuer.
+
+\subsubsection{Functional Roles}
+
+The functional roles are also defined in the Swiss \eid Act \cite{BGEID24} and the ordinance \cite{VEID25}.
+The EUID \cite{EUDI-ARF} defines the same functional roles, as it is based upon a similar decentralized system like \swiyu.
+
+%\todo{Add a figure here with the functional roles}
+
+\paragraph{Issuer} creates credentials and distributes them to the \emph{holder}s.
+A holder usually starts out with receiving an \eid as their first credential, which can only be issued by the government.
+In \swiyu, every issuer can sign up to the base- and trust-registries, but this is not mandatory.
+However, if an issuer is not in these registries, the holder will get a notification that they are about to store a credential from a non-official issuer.
+
+\paragraph{Holder} has an application which stores the \eid and other credentials on an electronic device, most often a smartphone with an Android or an iOS system.
+In \swiyu, the holder has full control over their \eid and credentials, and can control at any time which information is presented to whom.
+
+\paragraph{Verifier} is the role of the entity wanting to receive a proof of one or more attributes of a credential from a holder.
+The verifier has the legal obligation to ensure only the minimal amount of information necessary for the fulfillment of the task gets requested to the holder.
+The Swiss ordinance allows non-registered verifiers to request data, but the holders will be informed that this action is dangerous and not normal \cite[Art. 14]{VEID25}.
+For registered verifiers, the Swiss ordinance also contains information about abuse of verification requests.
+When a verifier requests information from a holder, the application will show which information the verifier requests, and the holder can decide whether or not to create a proof for this information.

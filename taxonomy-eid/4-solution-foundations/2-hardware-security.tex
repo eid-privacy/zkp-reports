@@ -1,0 +1,32 @@
+
+\subsection{Hardware Security}
+
+Here we make a distinction between Secure Enclave (SE) or Trusted Platform Modules (TPM), typically required for individual's computing devices, and Hardware Security Modules (HSMs), specialized hardware that is already legally enforced for providers of security services such as (Qualified) Trust Service Providers in the EU.
+
+The immutable nature of these hardware security features creates long-term dependencies that must be carefully considered. Any change to the required feature set represents high time and money costs, provided that the incentive for change exists at all. This, combined with the looming post-quantum security requirement, is a big source of discussion regarding the trade-offs in \eid systems.
+
+\dirtree{%
+.1 Hardware Security. 
+.2 Secure Element. 
+.3 Apple Secure Enclave.
+.3 Android Trusty. 
+.2 Hardware Security Module. 
+}
+
+\subsubsection{Secure Element} 
+
+We are primarily concerned with the secure element of mobile devices, since it is the most likely solution to achieve holder binding on consumer phones.
+
+\paragraph{Apple Secure Enclave} \cite{apple-secure-enclaves} is a coprocessor implementation found across Apple's device ecosystem, including iPhones, iPads, Macs, and other Apple silicon-based products. Among other features, it offers dedicated hardware for encryption using AES, RSA as well as elliptic curve cryptography.
+Furthermore, it allows signing messages using RSA and elliptic curve cryptography, secure storage, key management, and key attestation capabilities.
+
+\paragraph{Android Trusty} \cite{trusty} relies, on most Android devices, on ARM TrustZone \cite{arm-trustzone}. 
+The latter provides hardware-enforced separation between secure and non-secure worlds within ARM-based processors.
+For our purposes, these environments are sensibly similar to Apple's, offering encryption, signing, and secure storage operations.
+
+\paragraph{Key attestations} are useful in proving to third parties that a key has been well-generated and is actually hardware-bound. Sometimes they also prove that the device they were generated on is not jailbroken. There is a major difference between Apple's and Google's implementation of key attestations. Apple's attestations require Apple itself to verify the key information, whereas Google's attestations can be verified by third parties. This could have an impact on the use of secure elements and key attestation in the scope of public institutions' \eid projects.
+
+\subsubsection{Hardware Security Module} 
+
+Hardware security modules are physically separate hardware appliances. They are designed for efficient key storage, and cryptographic operations (in particular, signatures). They are also designed to be tamper-resistant and provide physical security. This kind of hardware is usually mandated for actors allowed to issue and sign certificates in a public-key infrastructure, or in banks. The same kind of requirements are enforced for actors allowed to issue high level of assurance attestations in the EU ARF \cite{EUDI-ARF}, such as the \emph{Personal Identification Data (PID)}.
+

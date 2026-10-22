@@ -1,0 +1,79 @@
+\subsection{Legal Texts} 
+
+For this paper we only consider the EU and the Swiss legal texts.
+In our taxonomy, we consider the Swiss \emph{Constitution} to be
+at the same level as the EU \emph{Treaties}.
+They build the basis for all legal activities, have very general
+language, and are rarely modified.
+Following the constitution, Switzerland has \emph{laws} and the EU
+creates \emph{Regulation}s.
+These legal documents contain still very abstract language, but
+are used as the basis for the actual applied documents:
+\emph{Ordinance}s in Switzerland, and 
+\emph{Implementation Regulation}s in the EU.
+They are applied and contain more concrete language
+indicating what MAY, SHOULD, and MUST be implemented.
+
+\vspace{1cm}
+
+\dirtree{%
+.1 Legal Texts. 
+.2 Constitution Treaties. 
+.2 Law Regulation. 
+.3 Switzerland's e-ID Act. 
+.3 EU and the EIDAS/EUDI. 
+.2 Ordinances Directives. 
+.3 Switzerland's Ordinance Proposal. 
+.3 EU's Implementation Regulations. 
+}
+
+\subsubsection{Constitution Treaties}
+
+The EU \eid{} is based on article 26 of the \emph{Treaty on the Functioning of the European Union}
+\cite{EUTreaties}{Art.26}, which defines the internal market of the EU:
+\begin{quote}
+    1.   The Union shall adopt measures with the aim of establishing or ensuring the functioning of the internal market, in accordance with the relevant provisions of the Treaties.
+\end{quote}
+In addition, the \emph{Charter of fundamental rights} defines the privacy and personal data protection:
+\begin{quote}
+    Article 7 - Respect for private and family life - Everyone has the right to respect for his or her private and family life, home and communications.
+    
+    Article 8 - Protection of personal data - 1.   Everyone has the right to the protection of personal data concerning him or her.
+    - 2.   Such data must be processed fairly for specified purposes and on the basis of the consent of the person concerned or some other legitimate basis laid down by law. Everyone has the right of access to data which has been collected concerning him or her, and the right to have it rectified. - 3.   Compliance with these rules shall be subject to control by an independent authority.
+\end{quote}
+
+The proposed Swiss \eid act is based on the article 81, of the \emph{Swiss Constitution} \cite{SwissConstitution}, \emph{Public Construction Works}.
+
+\subsubsection{Law / Regulation}
+
+The EU published a first regulation in 2015 called EIDAS\cite{EIDAS}.
+It was not mandatory, but allowed all member states to start working on an
+interoperable \eid.
+In Summer 2024, the EU published the updated EIDAS regulation 
+officially called EUDI\cite{EUDI}, unofficially called EIDASv2.
+The EUDI makes it mandatory for the EU countries to implement an EU-wide accepted
+\eid solution within 24 months.
+
+For Switzerland, a first \eid{} act was refused by the Swiss people in 2021\cite{CHeID21}.
+One of the most voiced criticisms in 2021 was the emission and data handling by
+private actors.
+For this reason, a new \eid{} act has been worked out, based on government-run services,
+and the Swiss people will vote on this new act in September 2025\cite{SwiyuAct25}.
+
+\subsubsection{Ordinances and Directives}
+
+In the EU five implementation regulations have been proposed\cite{EUDIReg24}:
+four describing the technical implementation, which will be
+updated regularly, and a fifth, which is a \emph{Notification to the commission}.
+In addition to these acts, the EU has defined the \emph{Architecture and Reference Framework
+}(ARF)\cite{EUARF25}.
+The ARF describes the technical details of the implementation and is under active
+discussion on their github repository.
+
+In June 2025, the Swiss government published a proposed ordinance for the
+\eid act\cite{SwiyuOrdinance25}.
+It describes in more details how the system should work, what data needs to be stored,
+and how the different actors work together.
+Building on its experience with the SwissCovid App \cite{SwisscovidGithub}, Switzerland is also
+developing the \swiyu app through github, and is open to discussions
+and code contributions from a broader public \cite{SwiyuGithub}.

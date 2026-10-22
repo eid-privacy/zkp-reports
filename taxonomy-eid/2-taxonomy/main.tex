@@ -1,0 +1,45 @@
+\section{Taxonomy}
+\label{sec:taxonomy}
+
+We based our taxonomy on similar work \emph{Privacy-enhancing technologies for digital payments: mapping the landscape} \cite{ABCD25} and discussions
+in 2024 / 2025 around the electronic identity proposals of the EU \cite{EUDI-ARF}
+and Switzerland \cite{Swiyu}.
+The first level of taxonomy separates three domains of concern
+regarding privacy for digital identity users. We further split each domain in
+subgroups:
+
+\begin{forest}
+for tree={
+    grow=0,                    % Left to right
+    parent anchor=east,        % Connect from right side of parent
+    child anchor=west,         % Connect to left side of child
+    l sep=2cm,                % Horizontal separation
+    %s sep=1cm,                % Vertical separation between siblings
+    text width=4cm,
+    align=left,
+    reversed
+}
+[Privacy-Preserving\\Electronic Identities
+    [\rot
+        [Actors]
+        [Trust Goals]
+        [Threat Models]
+    ]
+    [Solution Foundations\\and Implementations
+        [Cryptographic\\Building Blocks]
+        [Hardware\\Security]
+%        [Data\\Structures]
+%        [Protocols]
+    ]
+    [Regulatory and\\Normative Frameworks
+        [Legal Texts]
+%        [Technical\\References]
+%        [Standards]
+    ]
+]
+\end{forest}
+
+In \emph{\rot}, we list the goals and incentives for each party in an identity system. It is a list of concepts that an \eid must address in order to offer a trustworthy solution to all parties.
+It is followed by the threats a good solution must mitigate in order to be trustworthy.
+\emph{\sfi} lists technical means to achieve these goals and mitigate risks.
+The \emph{\rnf} branch presents the legal texts from the EU and Switzerland related to \eid that constrain the solutions and technology that can be deployed, limiting the scope of what we consider in this paper.

@@ -1,0 +1,83 @@
+\subsection{Trust Goals}
+\label{subsub:trust_goals}
+
+\vspace{1em}
+
+\dirtree{%
+.1 Trust Goals. 
+.2 User Agency. 
+.3 Anonymity (Data Minimization). 
+.4 Unlinkability. 
+.4 Predicate Proofs. 
+.3 Autonomy (Decentralization).
+.4 Coercion Resistance. 
+.4 User-centric Identity. 
+.4 Offline Usage. 
+.2 Business Interests. 
+.3 Fraud prevention. 
+.3 Audit Trails. 
+.2 Government Requirements. 
+.3 Unforgeability of \eid. 
+.3 Non-transferability (holder binding). 
+.3 Government Oversight / Transparency. 
+}
+
+We map each \emph{Actor} type to distinct \emph{Trust Goals}. \emph{Private Individuals} seek \emph{User Agency}, \emph{Businesses} seek workflow optimizations and improvement, and \emph{Governments} aim to ensure only legitimate institutions can issue identities for specific purposes.
+Note that some goals exist prior to any digital identity systems, while some are specific to them. Some goals go beyond the identity emission/presentation interactions and cannot be addressed by digital credential technologies. 
+They exist nonetheless and should be taken into account when designing the credential layer. We give a more detailed breakdown of these categories.
+
+
+\subsubsection{User Agency} 
+
+Here we describe the \emph{anonymity} requirements of a user, as well as the \emph{autonomy} that forms the foundation of individual agency in modern society.
+Just as digital payment technologies have increased the fluidity of money, we expect digital identity technologies will do the same for identity. 
+In order for the users to trust this new technology, they need to have \emph{User Agency}, which is composed of the following:
+
+\paragraph{Anonymity} regroups the characteristics of an identity system that enables safe and well-bounded usage of a person's identity. The category is composed of characteristics that limit the risk of an individual's overexposure when using their identity. We favor the term \emph{Anonymity} over \emph{Data Minimization} to retain a focus on individuals rather than on data. We use the definition from \cite{ph10}: "Anonymity of a subject means that the subject is not identifiable within a set of
+subjects, the anonymity set."
+
+\subparagraph{Unlinkability} -- we use the definition from \cite{ph10}: ''Unlinkability of two or more \emph{Items of Interest} (IOIs, e.g., subjects, messages, actions, ...)
+from an attacker’s perspective means that within the system (comprising these and
+possibly other items), the attacker cannot sufficiently distinguish whether these IOIs are
+related or not.''
+We further define \emph{verifier unlinkability} as unlinkability with the attacker being a set of verifiers colluding in the attempt of linking IOIs (sometimes called multi-show unlinkability), and \emph{issuer unlinkability} as unlinkability with the attacker being the IOI issuers, sometimes also called \emph{untraceability}.
+
+
+\subparagraph{Predicate Proofs} allow the holder of a piece of information to make statements about it without revealing the exact attribute value. This can be zero-knowledge if observers cannot infer any knowledge from the statement being proved, or not. A classic example is proving one is over a certain age. Making that statement does not reveal one's birth date but still leaks information about one's age range.
+
+
+\paragraph{Autonomy} describes the ability of a system to allow a person to use their identity even in the presence of coercive or disruptive powers in the system. 
+This is used to build identity systems resilient to various adverse conditions.
+\emph{Coercion Resistance} relates to identity infrastructure resisting shifts in political benevolence. For example, can identities be altered, deactivated, or cloned by the issuer after issuance has happened?
+
+
+\subparagraph{User-centric Identity} gauges the self-determination power that participants have but also the risks they are exposed to due to the system's architecture.
+The popular term \emph{Self-Sovereign identity} is one instance of a user-centric identity system in which participants are given the technical and legal means to produce assertions about themselves regardless of their legal status and without relying on non-neutral third parties.
+We also use \emph{User-centric identity} to assess the level of power and technical decentralization of the systems. 
+It should not come at the cost of a loss of control over the identity (identity theft).
+
+\subparagraph{Offline Usage} captures the extent to which an \eid{} can be used even without network connectivity.
+We define \emph{offline} as a setting in which parties cannot rely on connectivity to a central server or the global internet, because it is either nonexistent or intermittent. We do not consider cases where a device is "never online", whether intentionally or not. Using an \eid{} in these settings usually means employing peer-to-peer transport such as Bluetooth, or scanning QR codes. It also usually requires pre-loading of the \eid and of a certain number of trust elements such as issuers' keys, trust registries, revocation lists, etc.
+
+\subsubsection{Business Interests} 
+
+This term represents the needs of the business to function, but also how they can comply with the legal requirements given by the laws.
+
+\paragraph{Fraud prevention} is notoriously difficult over the network ("on the internet nobody knows you're a dog"). 
+It is mandatory that parties relying on shared data can trust the data to be authentic, unaltered, and belonging (or be entrusted to) the party presenting it. With this category, we evaluate the difficulty for holders to present fictitious data and pass them as authentic.
+
+\paragraph{Audit Trails} are needed to comply with local or global regulations.
+The format and amount of information in these exchanges might help or hinder compliance.
+This requires identity systems to be able to operate on various modes of privacy as zero-knowledge exchanges come in direct clash with Know Your Customer (KYC) regulation such as Anti-Money Laundering (AML). An analysis of such compromises in identity systems can be found in \cite{ABCD25}.
+
+\subsubsection{Government Requirements} 
+
+The constitution and applicable laws describe the goals of a government for an \eid system.
+
+\paragraph{Unforgeability} is a basic requirement, not only for \eid{}, that it must be (computationally) infeasible to make claims in the name of another party in a way that is indistinguishable from claims made by that party. This is closely related to \emph{Fraud prevention}.
+
+\paragraph{Non-transferability (holder binding)} makes it hard for malicious actors to forge an identity.
+The authenticity of shared data might be guaranteed, but the lawful possession of the data by the presenting party is not. The issuers, in our case, the governments, want to ensure that authentic identity data can only be used by authorized people: An \eid should only be usable by the person it represents or a legal guardian. The closest approximation to ensure a particular \eid can only be presented successfully by the authorized person is making sure that an \eid can only be presented from the device it was issued to. This mechanism is usually called \emph{holder binding}.
+
+\paragraph{Government oversight/transparency} is sometimes desirable, or even required.
+It allows for authorities to be able to have insight into how identities are used. Specifically in the AML case already mentioned, identities tied to transactions must remain transparent to the regulator. This usually comes in direct conflict with \emph{User agency} goals and requires compromises in either technological or legal form. Auer et al. published a taxonomy of privacy and oversight measures \cite{ABCD25}, in particular, we want to note their use of different "hardness" categories for enforcement techniques: \emph{soft/hard privacy} and \emph{soft/hard oversight}.

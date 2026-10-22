@@ -1,0 +1,98 @@
+\documentclass{article}
+
+
+\usepackage{arxiv}
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{lipsum}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{forest}
+\usepackage{dirtree}
+\usepackage{todonotes}
+\usepackage{xspace}
+\graphicspath{ {./images/} }
+\setcounter{secnumdepth}{4}
+
+\title{Taxonomy for Privacy-Preserving Electronic Identities}
+
+\author{
+ Linus Gasser \\
+  C4DT / Informatique et Communication \\
+  EPFL \\
+  Lausanne, Switzerland \\
+  \texttt{linus.gasser@epfl.ch} \\
+  \AND
+ Cl\'ement Humbert \\
+  SICPA \\
+  Lausanne, Switzerland \\
+  \texttt{clement.humbert@sicpa.com} \\
+  \AND
+ Ahmed Elghareeb \\
+  EPFL \\
+  Lausanne, Switzerland \\
+  \texttt{ahmed.elghareeb@epfl.ch} \\
+  %% examples of more authors
+  %% \AND
+  %% Coauthor \\
+  %% Affiliation \\
+  %% Address \\
+  %% \texttt{email} \\
+  %% \And
+  %% Coauthor \\
+  %% Affiliation \\
+  %% Address \\
+  %% \texttt{email} \\
+  %% \And
+  %% Coauthor \\
+  %% Affiliation \\
+  %% Address \\
+  %% \texttt{email} \\
+}
+
+\begin{document}
+
+\newcommand{\eid}{e-ID\xspace}
+\newcommand{\rot}{Trust and Threats\xspace}
+\newcommand{\sfi}{Solution Foundation and Implementation\xspace}
+\newcommand{\rnf}{Regulatory and Normative Frameworks\xspace}
+\newcommand{\swiyu}{Swiyu\xspace}
+
+\maketitle
+\begin{abstract}
+We present a taxonomy of digital identity systems as a discussion foundation.
+This taxonomy defines the desired properties, the available
+cryptographic techniques, as well as the legal and technical
+frameworks relevant to building digital identity systems.
+%Then we evaluate the cryptographic techniques with our desired
+%properties as well as the legal requirements.
+\end{abstract}
+
+
+% keywords can be removed
+%\keywords{First keyword \and Second keyword \and More}
+
+\include{1-introduction}
+
+\include{2-taxonomy/main}
+
+\include{3-trust-and-threats/main}
+
+\include{4-solution-foundations/main}
+
+\include{5-regulatory/main}
+
+\include{7-follow-ups}
+
+
+\bibliographystyle{unsrt}  
+\bibliography{references}
+
+\end{document}

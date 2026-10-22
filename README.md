@@ -1,0 +1,38 @@
+# ZKP Reports
+
+Reports and drafts written during the Innosuisse grant 101.292 IP-ICT -
+_Secure and Privacy-Preserving Credentials for E-ID_ - between EPFL and SICPA SA.
+
+| Directory                       | Content                                                         | Format |
+| ------------------------------- | --------------------------------------------------------------- | ------ |
+| [ms2-report](ms2-report/)       | Milestone 2 report: proof-of-concept, comparison of ZKP stacks | typst  |
+| [ms4-report](ms4-report/)       | Final report of the grant                                       | typst  |
+| [taxonomy-eid](taxonomy-eid/)   | Taxonomy of the Swiss and EU e-ID systems (draft paper)         | LaTeX  |
+
+Every push to `main` builds all PDFs and publishes them in the
+[releases](https://github.com/eid-privacy/zkp-reports/releases).
+The latest versions are always in the
+[latest](https://github.com/eid-privacy/zkp-reports/releases/tag/latest) release.
+
+## Building locally
+
+With [DevBox](https://www.jetify.com/docs/devbox/installing-devbox) installed:
+
+```bash
+devbox run compile    # all reports
+devbox run ms2        # ms2-report/index.pdf
+devbox run ms4        # ms4-report/index.pdf
+devbox run taxonomy   # taxonomy-eid/main.pdf
+```
+
+## History
+
+The reports were copied from their original repositories, which hold the
+full history:
+[MS2-Minimal-Viable-Project](https://github.com/eid-privacy/MS2-Minimal-Viable-Project),
+[MS4-Implementation-Report](https://github.com/eid-privacy/MS4-Implementation-Report),
+[taxonomy-eid](https://github.com/eid-privacy/taxonomy-eid).
+
+## License
+
+[CC BY-SA 4.0](LICENSE)

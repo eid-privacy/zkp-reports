@@ -1,0 +1,90 @@
+\subsection{Cryptographic Foundations}
+\label{subsub:cryptography}
+
+This section lists \emph{existing} cryptographic building blocks, schemes, and protocols.
+
+\dirtree{%
+.1 Cryptographic Foundations. 
+.2 Primitives. 
+.3 Hashes. 
+.3 Public-key Cryptography. 
+.3 Symmetric Cryptography. 
+.2 Cryptographic Services.
+.3 Signing. 
+.3 Exchanging keys. 
+.3 Encrypting. 
+.2 Privacy-first techniques. 
+.3 Zero-Knowledge Proofs (ZKP). 
+.3 Selective Disclosure. 
+.3 Private information retrieval (PIR). 
+.2 Post-Quantum Security. 
+}
+
+\subsubsection{Primitives} 
+
+Cryptographic primitives form the foundational mathematical operations upon which all higher-level security protocols are built.
+They provide the basic computational building blocks for secure communication and data protection.
+
+\paragraph{Hashes} are used to create a digital fingerprint, the \emph{hash value}, of a source, the \emph{message}.
+The size of the hash value is always the same, regardless of the size of the message.
+A \emph{cryptographic hash function} needs to have the following properties:
+the output must be \emph{equiprobable} for any input; finding the input of a random output is only possible through enumeration (\emph{pre-image resistance}); given an input/output pair, only enumeration can give a second input with the same output (\emph{second pre-image resistance}); randomly finding two inputs with the same output is only possible with enumeration (\emph{collision resistance}).
+The most popular hash functions are SHA-256 \cite{FIPS180-4} and SHA-3 \cite{FIPS202}.
+We also want to mention Poseidon \cite{GKRRS21}, a purpose-specific hash function designed to be cost-effective when used in zk-SNARKS constructions.
+
+\paragraph{Public-Key Cryptography} 
+\label{sp:public-key-cryptography}
+(or asymmetric) cryptography relies on a pair of keys, one \emph{public}, the other \emph{private}, and a one-way function. 
+One-way functions are easy to compute in one direction but hard in the other. 
+This allows a party to encrypt a message using the other party's public key. 
+Messages that can then only be decrypted by someone in possession of the corresponding private key.
+
+\paragraph{Symmetric Cryptography} relies on parties agreeing on a common secret to protect information. This secret is used for both encrypting and decrypting messages. Symmetric systems are computationally very efficient and cryptographic systems usually rely on a combination of asymmetric and symmetric cryptographic primitives.
+
+\subsubsection{Cryptographic services} 
+\label{pa:cryptographic-services}
+
+We describe here the elementary services required for a secure and private \eid. \emph{Encrypting} encompasses symmetric and asymmetric schemes designed to preserve the confidentiality of data during transmission or storage. The distributed, many-actors nature of distributed identity systems makes them well-suited for public-key architectures, which enable secure \emph{key exchanges} between parties without prior shared secret, as well as the publication of verification material for \emph{signatures}.
+
+\paragraph{Signing} 
+\label{sp:signing}
+provides authentication and integrity guarantees.
+These protocols have seen extensive development relevant to digital identity needs. 
+Of particular relevance to this work are signature schemes that allow easy blinding of signatures (CL \cite{CL02}, BLS \cite{BLS01}, BBS+\cite{ASM06}), and signature schemes already widely used, whether in digital identity schemes or not (ECDSA \cite{NIST186-5}, EdDSA \cite{BDLSY11}, Schnorr)
+
+\paragraph{Exchanging keys} allow two parties to establish a common secret key in a safe manner.
+\label{sp:exchanging-keys}
+This is where asymmetric cryptography helps. Key-exchange protocols such as the one proposed by Diffie and Hellman \cite{DH76} and all the variants it prompted enable two parties to agree on a common key based on---and this is a crucial point---the input of both parties.
+
+\paragraph{Encrypting} 
+\label{sp:encrypting}
+is broadly split between symmetric (AES \cite{NIST2001AES}, ChaCha20-Poly1305 \cite{RFC7539}) and asymmetric (RSA \cite{RSA78}, ElGamal \cite{E85}) systems. It is also quite common to build hybrid systems in which public-key cryptography is used to encrypt a symmetric key which is then used to encrypt communication and benefit from the speed-advantage of symmetric schemes.
+
+\subsubsection{Privacy-first techniques} 
+
+Under this section we file techniques that can alleviate the tension between privacy (\emph{User agency}) and authorities oversight by providing techniques enabling strong security while limiting the amount of data shared in the process.
+
+\paragraph{Zero-Knowledge Proofs} are getting an unprecedented amount of attention with their blockchain applications. 
+Despite a very different setup, they are also being studied and developed for digital identity applications.
+Whereas blockchain applications typically optimize for proof length in priority, to reduce on-chain storage size, our study focuses on provers' run-time first. In the context of digital identity, provers are typically running on resource-constrained hardware (consumer phones). Proof size is also an important factor --- proofs need to be transmitted over the network as fast as possible.  
+
+In particular, we discuss the following:
+
+\begin{itemize}
+    \item commitment schemes (Pedersen \cite{PD91}, Polynomial commitment schemes)
+    \item models and components for proof systems and protocols (sigma protocols \cite{SP90}, Sumcheck \cite{LCF92}, Ligero \cite{AHIV22})
+    \item zk-SNARKS (Groth16 \cite{G16}, PLONK \cite{GWC90}, Pinocchio \cite{PHGR13}), zk-STARKs (zk-STARK \cite{BCG18}), and their cousins (Bulletproof \cite{BBD18})
+\end{itemize}
+
+\paragraph{Selective Disclosure} means any mechanism that allows holders of signed information to reveal only specific portions of it while preserving the verifier's ability to validate the integrity and provenance of shared data. This can be achieved through characteristics of the signature scheme (CL, BBS+ \cite{ASM06}) or through the construction of the credential itself (IETF SD-JWT VC \cite{SDJWT}, ISO mDoc/mDL \cite{ISO18013-5_2021}).
+The latter do not embed the claims in the credentials, but use \emph{salted hashes} signed by the issuer so that individual pieces of information revealed by the holders can be linked back to the signed credential by verifiers.
+
+\paragraph{Private Information Retrieval} allow provers to fetch information concerning their credentials revocation status without revealing any information to issuers. 
+Most credential systems in production today use simple status lists to indicate the revocation or suspension status of issued credentials (IETF Token Status List \cite{TSL}, W3C Bitstring Status List \cite{W3C-status-lists}).
+In the context of proving one's credentials non-revocation, we discuss Private Information Retrieval schemes such as \cite{MW22}.
+In \swiyu \cite{Swiyu} it might also be a way to access the Trust Registries without revealing information to the entity operating the infrastructure.
+
+\subsubsection{Post-quantum security}
+
+As we already mentioned, the question of post-quantum security of the whole digital identity system is of notable importance to our discussion.
+It is particularly relevant in the fact that many of the techniques that are convenient to build anonymous credentials (such as BBS+ signatures \cite{ASM06}), are not quantum-resistant and usually not part of existing hardware security modules' feature set. If regulation requires \emph{non-transferability} to use hardware binding, any non-hardware-supported scheme might require years for proper standardization and industry roll-out --- years during which the need for quantum-resistance might become more pressing, or simply necessary.
