@@ -3,7 +3,7 @@
 # release and sets the metadata from zenodo/<doc>.json.
 # The draft is NOT published: check it on Zenodo and press "Publish" there.
 #
-# Usage: devbox run -- zenodo/upload.sh <ms2|ms4|taxonomy> [deposition-id]
+# Usage: devbox run upload <ms2|ms4|taxonomy> [deposition-id]
 #   deposition-id: id of an already published record -> creates a new version of it
 # Env:   ZENODO_TOKEN (scopes deposit:write, deposit:actions)
 #        ZENODO_URL   (default https://zenodo.org, use https://sandbox.zenodo.org to test)

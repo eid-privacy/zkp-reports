@@ -33,9 +33,9 @@ The MS2 and MS4 reports and the taxonomy draft are archived on Zenodo.
 from the PDF in the `latest` release (publish it on Zenodo afterwards):
 
 ```bash
-export ZENODO_TOKEN=...                           # scopes deposit:write, deposit:actions
-devbox run -- zenodo/upload.sh taxonomy           # new record
-devbox run -- zenodo/upload.sh taxonomy <id>      # new version of record <id>
+export ZENODO_TOKEN=...           # scopes deposit:write, deposit:actions
+devbox run upload taxonomy        # new record
+devbox run upload taxonomy <id>   # new version of record <id>
 ```
 
 Set `ZENODO_URL=https://sandbox.zenodo.org` to test first.

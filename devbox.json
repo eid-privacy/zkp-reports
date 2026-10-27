@@ -27,6 +27,7 @@
         "pdflatex main.tex",
         "cp main.pdf eid-privacy-taxonomy-eid.pdf"
       ],
+      "upload": ["zenodo/upload.sh $*"],
       "compile": ["devbox run ms2", "devbox run ms4", "devbox run taxonomy"]
     }
   },
