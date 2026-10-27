@@ -1,0 +1,59 @@
+{
+  "metadata": {
+    "access_right": "open",
+    "license": "cc-by-sa-4.0",
+    "language": "eng",
+    "notes": "Funded by Innosuisse, grant 101.292 IP-ICT \"Secure and Privacy-Preserving Credentials for E-ID\", a collaboration between EPFL / C4DT and SICPA SA.",
+    "communities": [
+      {
+        "identifier": "eid-privacy"
+      }
+    ],
+    "title": "Secure and Privacy-Preserving Credentials for E-ID - Proof-of-Concept",
+    "upload_type": "publication",
+    "publication_type": "report",
+    "publication_date": "2026-01-06",
+    "version": "1.0",
+    "creators": [
+      {
+        "name": "Gasser, Linus",
+        "affiliation": "EPFL"
+      },
+      {
+        "name": "Humbert, Clément",
+        "affiliation": "SICPA"
+      },
+      {
+        "name": "Elghareeb, Ahmed",
+        "affiliation": "EPFL"
+      }
+    ],
+    "description": "<p>We describe the ongoing work for the Innosuisse grant 101.292 IP-ICT - Secure and Privacy-Preserving Credentials for E-ID - between EPFL's C4DT and SICPA SA. We list the most recent performance and suitability assessments for the main anonymous credential implementation candidates: Noir/UltraHONK, Docknetwork/BBS, Longfellow. We describe how the objective of each work package can be achieved with these technologies and the time/space cost for each of them. Finally, we summarize the interactions and byproducts of our work as well as the direction we'll follow for the remainder of the project.</p>",
+    "keywords": [
+      "e-ID",
+      "digital identity",
+      "zero-knowledge proofs",
+      "anonymous credentials",
+      "privacy",
+      "SD-JWT",
+      "swiyu",
+      "EUDI",
+      "BBS",
+      "Noir",
+      "UltraHONK",
+      "Longfellow"
+    ],
+    "related_identifiers": [
+      {
+        "relation": "isSupplementedBy",
+        "identifier": "https://github.com/eid-privacy/zkp-reports",
+        "resource_type": "other"
+      },
+      {
+        "relation": "isSupplementedBy",
+        "identifier": "https://github.com/eid-privacy/zkp-pocs",
+        "resource_type": "software"
+      }
+    ]
+  }
+}

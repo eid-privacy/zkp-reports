@@ -11,7 +11,9 @@
     "texlivePackages.todonotes": {
       "version": "latest",
       "outputs": ["tex"]
-    }
+    },
+    "curl": "latest",
+    "jq": "latest"
   },
   "shell": {
     "scripts": {
