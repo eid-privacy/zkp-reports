@@ -1,0 +1,53 @@
+{
+  "metadata": {
+    "access_right": "open",
+    "license": "cc-by-sa-4.0",
+    "language": "eng",
+    "notes": "Funded by Innosuisse, grant 101.292 IP-ICT \"Secure and Privacy-Preserving Credentials for E-ID\", a collaboration between EPFL / C4DT and SICPA SA.",
+    "communities": [
+      {
+        "identifier": "eid-privacy"
+      }
+    ],
+    "title": "Taxonomy for Privacy-Preserving Electronic Identities",
+    "upload_type": "publication",
+    "publication_type": "preprint",
+    "publication_date": "2026-10-27",
+    "version": "draft-2026-10",
+    "creators": [
+      {
+        "name": "Gasser, Linus",
+        "affiliation": "EPFL"
+      },
+      {
+        "name": "Humbert, Clément",
+        "affiliation": "SICPA"
+      },
+      {
+        "name": "Elghareeb, Ahmed",
+        "affiliation": "EPFL"
+      }
+    ],
+    "description": "<p>We present a taxonomy of digital identity systems as a discussion foundation. This taxonomy defines the desired properties, the available cryptographic techniques, as well as the legal and technical frameworks relevant to building digital identity systems.</p><p>This is a draft. Later versions will add evaluation metrics and apply them to the Swiss and EU e-ID systems.</p>",
+    "keywords": [
+      "e-ID",
+      "digital identity",
+      "zero-knowledge proofs",
+      "anonymous credentials",
+      "privacy",
+      "SD-JWT",
+      "swiyu",
+      "EUDI",
+      "taxonomy",
+      "eIDAS",
+      "regulation"
+    ],
+    "related_identifiers": [
+      {
+        "relation": "isSupplementedBy",
+        "identifier": "https://github.com/eid-privacy/zkp-reports",
+        "resource_type": "other"
+      }
+    ]
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "metadata": {
+    "access_right": "open",
+    "license": "cc-by-sa-4.0",
+    "language": "eng",
+    "notes": "Funded by Innosuisse, grant 101.292 IP-ICT \"Secure and Privacy-Preserving Credentials for E-ID\", a collaboration between EPFL / C4DT and SICPA SA.",
+    "communities": [
+      {
+        "identifier": "eid-privacy"
+      }
+    ],
+    "title": "Secure and Privacy-Preserving Credentials for E-ID - Final Report",
+    "upload_type": "publication",
+    "publication_type": "report",
+    "publication_date": "2026-10-27",
+    "version": "1.0",
+    "creators": [
+      {
+        "name": "Dengler, Carine",
+        "affiliation": "EPFL"
+      },
+      {
+        "name": "Humbert, Clément",
+        "affiliation": "SICPA"
+      },
+      {
+        "name": "Gasser, Linus",
+        "affiliation": "EPFL"
+      }
+    ],
+    "description": "<p>With the large-scale deployment of state-backed digital identity systems, e-ID, fast approaching in Europe (Swiyu and EUDI-ARF), we investigated how holders' privacy can be improved in the proposed technological stack of Swiyu. During the 18 months of this project, we researched how to use Zero-Knowledge-Proofs, ZKPs, to preserve privacy when using e-ID systems. After having evaluated existing solutions, we created an improved, simplified ZKP to prove any predicate of an e-ID in reasonable time.</p><p>Our solution allows to use standard SD-JWT credentials like they are used in Swiyu and the EUDI-ARF, and create proofs on any random predicate. All of this with acceptable performance: 4.3s on a 2023 mobile phone for an age verification, including holder binding. We achieved this performance and flexibility by linking Microsoft's Spartan prover to Noir, and optimising for ECDSA signature verification and low mobile performance.</p>",
+    "keywords": [
+      "e-ID",
+      "digital identity",
+      "zero-knowledge proofs",
+      "anonymous credentials",
+      "privacy",
+      "SD-JWT",
+      "swiyu",
+      "EUDI",
+      "Spartan",
+      "Noir",
+      "ECDSA",
+      "Tom-256"
+    ],
+    "related_identifiers": [
+      {
+        "relation": "isSupplementedBy",
+        "identifier": "https://github.com/eid-privacy/zkp-reports",
+        "resource_type": "other"
+      },
+      {
+        "relation": "isSupplementedBy",
+        "identifier": "https://github.com/eid-privacy/spartan-backend",
+        "resource_type": "software"
+      }
+    ]
+  }
+}

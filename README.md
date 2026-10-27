@@ -26,6 +26,20 @@ devbox run ms4        # ms4-report/eid-privacy-MS4.pdf
 devbox run taxonomy   # taxonomy-eid/eid-privacy-taxonomy-eid.pdf
 ```
 
+## Zenodo
+
+The MS2 and MS4 reports and the taxonomy draft are archived on Zenodo.
+`zenodo/<doc>.json` holds the metadata of each record. To create a draft
+from the PDF in the `latest` release (publish it on Zenodo afterwards):
+
+```bash
+export ZENODO_TOKEN=...           # scopes deposit:write, deposit:actions
+devbox run upload taxonomy        # new record
+devbox run upload taxonomy <id>   # new version of record <id>
+```
+
+Set `ZENODO_URL=https://sandbox.zenodo.org` to test first.
+
 ## History
 
 The reports were copied from their original repositories, which hold the
