@@ -55,7 +55,7 @@ The DOIs below always resolve to the latest version.
   author = {Gasser, Linus and Humbert, Clément and Elghareeb, Ahmed},
   title  = {Taxonomy for Privacy-Preserving Electronic Identities},
   note   = {Preprint},
-  year   = {2026},
+  year   = {2025},
   doi    = {10.5281/zenodo.23694217},
 }
 ```
