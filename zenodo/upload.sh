@@ -18,14 +18,14 @@ meta=$dir/$doc.json
 [ -f "$meta" ] || { echo "no metadata file $meta" >&2; exit 1; }
 
 case $doc in
-  ms2) pdf=eid_privacy-101.292-IP-ICT-ms2-report.pdf ;;
-  ms4) pdf=eid_privacy-101.292-IP-ICT-ms4-report.pdf ;;
-  taxonomy) pdf=taxonomy-eid-paper.pdf ;;
+  ms2) pdf=eid-privacy-MS2.pdf ;;
+  ms4) pdf=eid-privacy-MS4.pdf ;;
+  taxonomy) pdf=eid-privacy-taxonomy-eid.pdf ;;
 esac
 
 tmp=$(mktemp -d)
 trap 'rm -rf "$tmp"' EXIT
-curl -fsSL -o "$tmp/$pdf" "https://github.com/eid-privacy/zkp-reports/releases/download/latest/$pdf"
+curl -fsSL --retry 2 -o "$tmp/$pdf" "https://github.com/eid-privacy/zkp-reports/releases/download/latest/$pdf"
 
 if [ -z "$prev" ]; then
   dep=$(curl -fsS "${auth[@]}" -H "Content-Type: application/json" -d '{}' "$api")
