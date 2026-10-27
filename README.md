@@ -21,9 +21,9 @@ With [DevBox](https://www.jetify.com/docs/devbox/installing-devbox) installed:
 
 ```bash
 devbox run compile    # all reports
-devbox run ms2        # ms2-report/index.pdf
-devbox run ms4        # ms4-report/index.pdf
-devbox run taxonomy   # taxonomy-eid/main.pdf
+devbox run ms2        # ms2-report/eid-privacy-MS2.pdf
+devbox run ms4        # ms4-report/eid-privacy-MS4.pdf
+devbox run taxonomy   # taxonomy-eid/eid-privacy-taxonomy-eid.pdf
 ```
 
 ## History

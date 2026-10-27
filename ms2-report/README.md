@@ -14,7 +14,7 @@ and then running:
 devbox run ms2
 ```
 
-Then the compiled report is available as `ms2-report/index.pdf`.
+Then the compiled report is available as `ms2-report/eid-privacy-MS2.pdf`.
 
 # CHANGELOG
 

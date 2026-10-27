@@ -31,9 +31,10 @@ jobs:
           echo "datetime=${DATETIME}" >> $GITHUB_OUTPUT
           mkdir -p out/latest out/dated
           for pair in \
-            "ms2-report/index.pdf:eid_privacy-101.292-IP-ICT-ms2-report" \
-            "ms4-report/index.pdf:eid_privacy-101.292-IP-ICT-ms4-report" \
-            "taxonomy-eid/main.pdf:taxonomy-eid-paper"; do
+            "ms2-report/eid-privacy-MS2.pdf:eid-privacy-MS2" \
+            "ms4-report/eid-privacy-MS4.pdf:eid-privacy-MS4" \
+            "security-review/zksecurity-epfl-sicpa.pdf:eid-privacy-security-review" \
+            "taxonomy-eid/eid-privacy-taxonomy-eid.pdf:eid-privacy-taxonomy-eid"; do
             src=${pair%%:*}; name=${pair##*:}
             cp "$src" "out/latest/${name}.pdf"
             cp "$src" "out/dated/${name}-${DATETIME}.pdf"

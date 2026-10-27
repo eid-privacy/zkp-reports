@@ -13,7 +13,7 @@ We propose that you [install devbox](https://www.jetify.com/docs/devbox/installi
 devbox run taxonomy
 ```
 
-To create `taxonomy-eid/main.pdf`.
+To create `taxonomy-eid/eid-privacy-taxonomy-eid.pdf`.
 
 ## Contribute
 
@@ -21,5 +21,5 @@ Please clone the repository, change the .tex files, then create a PR to our repo
 
 ## Release
 
-Every push to `main` builds the PDF as `taxonomy-eid-paper.pdf` in the
+Every push to `main` builds the PDF as `eid-privacy-taxonomy-eid.pdf` in the
 [releases](https://github.com/eid-privacy/zkp-reports/releases) of this repository.

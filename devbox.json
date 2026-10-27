@@ -15,14 +15,15 @@
   },
   "shell": {
     "scripts": {
-      "ms2": ["cd ms2-report; typst compile index.typ"],
-      "ms4": ["cd ms4-report; typst compile index.typ"],
+      "ms2": ["cd ms2-report; typst compile index.typ eid-privacy-MS2.pdf"],
+      "ms4": ["cd ms4-report; typst compile index.typ eid-privacy-MS4.pdf"],
       "taxonomy": [
         "cd taxonomy-eid",
         "latex main.tex",
         "bibtex main",
         "latex main.tex",
-        "pdflatex main.tex"
+        "pdflatex main.tex",
+        "cp main.pdf eid-privacy-taxonomy-eid.pdf"
       ],
       "compile": ["devbox run ms2", "devbox run ms4", "devbox run taxonomy"]
     }

@@ -14,7 +14,7 @@ and then running:
 devbox run ms4
 ```
 
-Then the compiled report is available as `ms4-report/index.pdf`.
+Then the compiled report is available as `ms4-report/eid-privacy-MS4.pdf`.
 
 # CHANGELOG
 
